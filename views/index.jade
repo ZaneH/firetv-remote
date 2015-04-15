@@ -1,0 +1,75 @@
+extends layout
+
+block content
+    div.container
+        .jumbotron
+            .container
+                h1 FireTV Remote
+                p By Zane Helton
+                p
+                    a(href="http://www.github.com/ZaneH/FireTVRemote-Node").btn.btn-primary.btn-large View on GitHub
+
+        .row
+            .panel.panel-default
+                .panel-heading
+                    h3.panel-title Connect to Amazon FireTV
+                .panel-body
+                    .form-group
+                        label(for='deviceip') Device IP:
+                        input.form-control(id="deviceip" type='text', placeholder='x.x.x.x')
+                    .btn-toolbar
+                        button.btn.btn-primary(type='button', id="connect") Connect
+                        button.btn.btn-danger(type="button", id="disconnect") Disconnect
+            .panel.panel-default
+                .panel-heading Remote Commands
+                .panel-body
+                    p Use the buttons for easy navigation, but custom commands are welcome!
+                .container-fluid
+                    .row(style="margin-bottom:15px;")
+                        .col-xs-4.col-xs-offset-4
+                            button(type="button", id="upbutton").btn.btn-block.btn-default Up
+                    .row(style="margin-bottom:15px;")
+                        .col-xs-4
+                            button(type="button", id="leftbutton").btn.btn-block.btn-default Left
+                        .col-xs-4
+                            button(type="button", id="selectbutton").btn.btn-block.btn-default Select
+                        .col-xs-4
+                            button(type="button", id="rightbutton").btn.btn-block.btn-default Right
+                    .row(style="margin-bottom:30px;")
+                        .col-xs-4.col-xs-offset-4
+                            button(type="button", id="downbutton").btn.btn-block.btn-default Down
+                    .row(style="margin-bottom:15px;")
+                        .col-xs-4
+                            button(type="button", id="backbutton").btn.btn-block.btn-default Back
+                        .col-xs-4
+                            button(type="button", id="homebutton").btn.btn-block.btn-default Home
+                        .col-xs-4
+                            button(type="button", id="menubutton").btn.btn-block.btn-default Menu
+                    .row(style="margin-bottom:30px;")
+                        .col-xs-4
+                            button(type="button", id="lastbutton").btn.btn-block.btn-default <<
+                        .col-xs-4
+                            button(type="button", id="playtogglebutton").btn.btn-block.btn-default Play/Pause
+                        .col-xs-4
+                            button(type="button", id="nextbutton").btn.btn-block.btn-default >>
+                    .row(style="margin-bottom:15px;")
+                        .col-xs-12
+                            label(for="shellcommand") Key code input:
+                            .input-group(style="margin-bottom:15px;")
+                                span.input-group-addon(id="basic-addon1")
+                                    a(href="https://groups.google.com/d/msg/android-developers/pHBcP2JBT5A/TsjUfzt9GEUJ") adb shell input keyevent
+                                input(type="text", name="shellcommand", id="shellcommand" placeholder="Code...").form-control
+                                span.input-group-btn
+                                    button.btn.btn-default(type="button", id="sendshell") Send!
+
+                            label(for="rawshell") Custom input:
+                            .input-group(style="margin-bottom:15px;")
+                                span.input-group-addon(id="basic-addon1") adb shell
+                                input(type="text", name="rawshell", id="rawshell", placeholder="Raw command...").form-control
+                                span.input-group-btn
+                                    button.btn.btn-default(type="button", id="sendraw") Send!
+            .panel.panel-default
+                .panel-heading Remote Console
+                .panel-body
+                    textarea(id="log", rows="7", readonly).form-control
+                    button(type="button", style="margin-top:15px;", id="clearLog").btn.btn-block.btn-danger Clear Log

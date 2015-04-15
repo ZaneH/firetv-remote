@@ -1,0 +1,117 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
+    link(rel='stylesheet', href="/stylesheets/style.css")
+    script(src='//code.jquery.com/jquery.js')
+    script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
+    script(src="//cdn.jsdelivr.net/isotope/1.5.25/jquery.isotope.min.js")
+    script.
+        $(document).ready(function() {
+            $("#connect").click(function() {
+                $.post("", { deviceip:$("#deviceip").val() }, function(data) {
+                    $("#log").append("Connected.\n");
+                });
+            });
+
+            $("#disconnect").click(function() {
+                $.post("", { disconnect:true }, function(data) {
+                    $("#log").append("Disconnected.\n");
+                });
+            });
+
+            $("#upbutton").click(function() {
+                $.post("", { keypadID:"up" }, function(data) {
+                    $("#log").append("Up arrow pressed.\n");
+                });
+            });
+
+            $("#downbutton").click(function() {
+                $.post("", { keypadID:"down" }, function(data) {
+                    $("#log").append("Down arrow pressed.\n");
+                });
+            });
+
+            $("#leftbutton").click(function() {
+                $.post("", { keypadID:"left" }, function(data) {
+                    $("#log").append("Left arrow pressed.\n");
+                });
+            });
+
+            $("#rightbutton").click(function() {
+                $.post("", { keypadID:"right" }, function(data) {
+                    $("#log").append("Right arrow pressed.\n");
+                });
+            });
+
+            $("#selectbutton").click(function() {
+                $.post("", { keypadID:"select" }, function(data) {
+                    $("#log").append("Select button pressed.\n");
+                });
+            });
+
+            $("#backbutton").click(function() {
+                $.post("", { keypadID:"back" }, function(data) {
+                    $("#log").append("Back button pressed.\n");
+                });
+            });
+
+            $("#homebutton").click(function() {
+                $.post("", { keypadID:"home" }, function(data) {
+                    $("#log").append("Home button pressed.\n");
+                });
+            });
+
+            $("#menubutton").click(function() {
+                $.post("", { keypadID:"menu" }, function(data) {
+                    $("#log").append("Menu button pressed.\n");
+                });
+            });
+
+            $("#lastbutton").click(function() {
+                $.post("", { keypadID:"last" }, function(data) {
+                    $("#log").append("Last button pressed.\n");
+                });
+            });
+
+            $("#playtogglebutton").click(function() {
+                $.post("", { keypadID:"playtoggle" }, function(data) {
+                    $("#log").append("Play/Pause button pressed.\n");
+                });
+            });
+
+            $("#nextbutton").click(function() {
+                $.post("", { keypadID:"next" }, function(data) {
+                    $("#log").append("Next button pressed.\n");
+                });
+            });
+
+            $("#sendshell").click(function() {
+                $.post("", { keypadID:$("#shellcommand").val() }, function(data) {
+                    $("#log").append($("#shellcommand").val() + " pressed.\n");
+                });
+            });
+
+            $("#sendraw").click(function() {
+                $.post("", { rawcommand:$("#rawshell").val() }, function(data) {
+                    $("#log").append("\"" + $("#rawshell").val() + "\" sent.\n");
+                });
+            });
+
+            $("#clearLog").click(function() {
+                $("#log").val("");
+            });
+        });
+
+    script.
+        $.getScript('//cdn.jsdelivr.net/isotope/1.5.25/jquery.isotope.min.js', function() {
+            $('#posts').imagesLoaded(function() {
+                $('#posts').isotope({
+                    itemSelector:'.item'
+                });
+            });
+        });
+    .btn(style="padding-right:12px;")
+  body
+    block content
