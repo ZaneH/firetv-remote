@@ -73,3 +73,11 @@ block content
                 .panel-body
                     textarea(id="log", rows="7", readonly).form-control
                     button(type="button", style="margin-top:15px;", id="clearLog").btn.btn-block.btn-danger Clear Log
+            .panel.panel-default
+                .panel-heading Keyboard Input
+                    br
+                    small
+                        em Must use textbox for keybindings.
+                .panel-body
+                    input(type="text", id="inputarea", placeholder="Press buttons...").form-control
+                    button(type="button", style="margin-top:15px;", id="togglebinding").btn.btn-block.btn-default.active Disable Keybindings

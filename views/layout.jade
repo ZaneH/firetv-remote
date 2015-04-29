@@ -8,15 +8,20 @@ html
     script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
     script(src="//cdn.jsdelivr.net/isotope/1.5.25/jquery.isotope.min.js")
     script.
+        var isConnected = false;
+        var bindingEnabled = true;
+
         $(document).ready(function() {
             $("#connect").click(function() {
                 $.post("", { deviceip:$("#deviceip").val() }, function(data) {
+                    isConnected = true;
                     $("#log").append("Connected.\n");
                 });
             });
 
             $("#disconnect").click(function() {
                 $.post("", { disconnect:true }, function(data) {
+                    isConnected = false;
                     $("#log").append("Disconnected.\n");
                 });
             });
@@ -102,6 +107,96 @@ html
             $("#clearLog").click(function() {
                 $("#log").val("");
             });
+
+            $("#togglebinding").click(function() {
+                bindingEnabled = !bindingEnabled;
+                $(this).toggleClass("active");
+                $(this).html((bindingEnabled) ? "Disable Keybindings" : "Enable Keybindings");
+                $("#inputarea").prop("disabled", !bindingEnabled);
+            });
+
+            // keyboard bindings
+            $(document).keydown(function(event) {
+                if (!isConnected || !bindingEnabled) return;
+                if (!($("#inputarea").is(":focus"))) return;
+                if (event.which == 40) {
+                    $.post("", { keypadID:"down" }, function(data) {
+                        $("#log").append("Down arrow pressed.\n");
+                    });
+                } else if (event.which == 38) {
+                    $.post("", { keypadID:"up" }, function(data) {
+                        $("#log").append("Up arrow pressed.\n");
+                    });
+                } else if (event.which == 37) {
+                    $.post("", { keypadID:"left" }, function(data) {
+                        $("#log").append("Left arrow pressed.\n");
+                    });
+                } else if (event.which == 39) {
+                    $.post("", { keypadID:"right" }, function(data) {
+                        $("#log").append("Right arrow pressed.\n");
+                    });
+                } else if (event.which == 13) {
+                    $.post("", { keypadID:"select" }, function(data) {
+                        $("#log").append("Select button pressed.\n");
+                    });
+                } else if (event.which == 27) {
+                    $.post("", { keypadID:"back" }, function(data) {
+                        $("#log").append("Back button pressed.\n");
+                    });
+                } else if (event.which >= 65 && event.which <= 90) {
+                    $.post("", { keypadID:event.which - 36 }, function(data) {
+                        $("#log").append(event.which + " pressed.\n");
+                    });
+                } else if (event.which == 32) {
+                    $.post("", { keypadID:62 }, function(data) {
+                        $("#log").append(event.which + " pressed.\n");
+                    });
+                } else if (event.which == 8) {
+                    $.post("", { keypadID:67 }, function(data) {
+                        $("#log").append(event.which + " pressed.\n");
+                    });
+                } else if (event.which == 187) {
+                    $.post("", { keypadID:70 }, function(data) {
+                        $("#log").append(event.which + " pressed.\n");
+                    });
+                } else if (event.which == 186) {
+                    $.post("", { keypadID:74 }, function(data) {
+                        $("#log").append(event.which + " pressed.\n");
+                    });
+                } else if (event.which == 220) {
+                    $.post("", { keypadID:73 }, function(data) {
+                        $("#log").append(event.which + " pressed.\n");
+                    });
+                } else if (event.which == 188) {
+                    $.post("", { keypadID:55 }, function(data) {
+                        $("#log").append(event.which + " pressed.\n");
+                    });
+                } else if (event.which == 190) {
+                    $.post("", { keypadID:56 }, function(data) {
+                        $("#log").append(event.which + " pressed.\n");
+                    });
+                } else if (event.which == 189) {
+                    $.post("", { keypadID:69 }, function(data) {
+                        $("#log").append(event.which + " pressed.\n");
+                    });
+                } else if (event.which == 219) {
+                    $.post("", { keypadID:71 }, function(data) {
+                        $("#log").append(event.which + " pressed.\n");
+                    });
+                } else if (event.which == 221) {
+                    $.post("", { keypadID:72 }, function(data) {
+                        $("#log").append(event.which + " pressed.\n");
+                    });
+                } else if (event.which == 222) {
+                    $.post("", { keypadID:75 }, function(data) {
+                        $("#log").append(event.which + " pressed.\n");
+                    });
+                } else if (event.which == 191) {
+                    $.post("", { keypadID:76 }, function(data) {
+                        $("#log").append(event.which + " pressed.\n");
+                    });
+                }
+            });
         });
 
     script.
@@ -111,6 +206,34 @@ html
                     itemSelector:'.item'
                 });
             });
+        });
+
+    script.
+        // Prevent the backspace key from navigating back.
+        $(document).unbind('keydown').bind('keydown', function (event) {
+            var doPrevent = false;
+            if (event.keyCode === 8) {
+                var d = event.srcElement || event.target;
+                if ((d.tagName.toUpperCase() === 'INPUT' &&
+                     (
+                         d.type.toUpperCase() === 'TEXT' ||
+                         d.type.toUpperCase() === 'PASSWORD' ||
+                         d.type.toUpperCase() === 'FILE' ||
+                         d.type.toUpperCase() === 'EMAIL' ||
+                         d.type.toUpperCase() === 'SEARCH' ||
+                         d.type.toUpperCase() === 'DATE' )
+                     ) ||
+                     d.tagName.toUpperCase() === 'TEXTAREA') {
+                    doPrevent = d.readOnly || d.disabled;
+                }
+                else {
+                    doPrevent = true;
+                }
+            }
+
+            if (doPrevent) {
+                event.preventDefault();
+            }
         });
     .btn(style="padding-right:12px;")
   body
