@@ -17,4 +17,4 @@ All alphanumeric keys are also mapped to the keyboard so you can simply type on 
 
 *Not all traffic is guaranteed to be sequential if you're a fast typer.*
 
-<center><img src="http://i.imgur.com/vEeHmmh.png" /></center>
+<center><img src="http://i.imgur.com/hWTlubK.png"></center>
