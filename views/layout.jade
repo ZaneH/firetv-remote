@@ -117,8 +117,9 @@ html
             });
 
             $("area").click(function() {
-                $.post("/", { keypadID:this.id }, function(data) {
-                    $("#log").append("\"" + $("#rawshell").val() + "\" send.\n");
+                var idName = this.id;
+                $.post("/", { keypadID:idName }, function(data) {
+                    $("#log", window.opener.document).append("\"" + idName + "\" sent.\n");
                 });
             });
 
