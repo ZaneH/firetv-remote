@@ -1,0 +1,17 @@
+extends layout
+block content
+  img(src="/images/remote.png", width="173px", height="500px", usemap="#remotemap")
+  map(name="remotemap")
+    area(shape="circle", coords="87, 89, 39", href="#", onclick="console.log('SELECT');", id="select")
+    area(shape="rect", coords="20, 25, 153, 47", href="#", onclick="console.log('UP');", id="up")
+    area(shape="rect", coords="20, 126, 153, 148", href="#", onclick="console.log('DOWN');", id="down")
+    area(shape="rect", coords="20, 20, 45, 153", href="#", onclick="console.log('LEFT');", id="left")
+    area(shape="rect", coords="125, 20, 146, 153", href="#", onclick="console.log('RIGHT');", id="right")
+
+    area(shape="circle", coords="40, 187, 17", href="#", onclick="console.log('BACK');", id="back")
+    area(shape="circle", coords="86, 187, 17", href="#", onclick="console.log('HOME');", id="home")
+    area(shape="circle", coords="132, 187, 17", href="#", onclick="console.log('MENU');", id="menu")
+
+    area(shape="circle", coords="40, 237, 17", href="#", onclick="console.log('REWIND');", id="last")
+    area(shape="circle", coords="86, 237, 17", href="#", onclick="console.log('PLAYPAUSE');", id="playtoggle")
+    area(shape="circle", coords="132, 237, 17", href="#", onclick="console.log('FASTFORWARD');", id="next")

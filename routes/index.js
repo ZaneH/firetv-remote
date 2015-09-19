@@ -1,13 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-var sys = require("sys");
+var sys = require("util");
 var exec = require("child_process").exec;
 
 var deviceip;
 
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'FireTV Remote' });
+});
+
+router.get('/remote-control', function(req, res, next) {
+    res.render('remote-control');
 });
 
 router.post('/', function(req, res, next) {
@@ -56,7 +60,7 @@ router.post('/', function(req, res, next) {
         } else if (kpd == "playtoggle") {
             exec(adbPath + " shell input keyevent 66", puts);
             res.send("Play button pressed.");
-        } else if (kpd == "right") {
+        } else if (kpd == "next") {
             exec(adbPath + " shell input keyevent 22", puts);
             res.send("Right button pressed.");
         } else {

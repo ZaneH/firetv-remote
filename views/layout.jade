@@ -116,6 +116,12 @@ html
                 $("#inputarea").prop("disabled", !bindingEnabled);
             });
 
+            $("area").click(function() {
+                $.post("/", { keypadID:this.id }, function(data) {
+                    $("#log").append("\"" + $("#rawshell").val() + "\" send.\n");
+                });
+            });
+
             // keyboard bindings
             $(document).keydown(function(event) {
                 if (!isConnected || !bindingEnabled) return;
