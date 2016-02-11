@@ -1,6 +1,6 @@
 # FireTVRemote-Node :fire:
 A web app that can control your Amazon FireTV (Stick). Just startup Node, fill in your device's IP address and use your web browser as a remote.
-Be sure to have ADB enabled.
+Be sure to have ADB enabled on the FireTV.
 
 ##Keyboard bindings
 |Keyboard Button|Remote Button|
