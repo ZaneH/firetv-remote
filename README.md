@@ -1,11 +1,11 @@
 # FireTVRemote-Node :fire:
-A web app that can control your Amazon FireTV (/ Stick). Just startup Node, fill in your device's IP address and use your web browser as a remote.
-Be sure to have ADB enabled on the FireTV.
+A web app that can control the Amazon FireTV (/ Stick). Just start <a href="https://github.com/ZaneH/FireTVRemote-Node#setup">app.js</a>, fill in your device's IP address and use your web browser as a remote.
+Be sure to enable ADB on the FireTV.
 
 # Setup
 ```bash
 $ git clone https://github.com/ZaneH/FireTVRemote-Node.git
-$ cd FireTVRemote-Node.git
+$ cd FireTVRemote-Node
 $ node app.js
 ```
 
