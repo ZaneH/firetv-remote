@@ -1,7 +1,11 @@
 {
-  "name": "Amazon",
-  "version": "0.0.0",
+  "name": "firetv-remote",
+  "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Zane Helton",
+    "email": "zane99@me.com"
+  },
   "scripts": {
     "start": "node ./bin/www"
   },
